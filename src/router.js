@@ -9,15 +9,41 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: "/Logout",
+          name: 'logout',
+          component: () => import(/* webpackChunkName: "Logout" */ './views/Logout.vue')
+        },
+        {
+          path: '/Bk/Upcoming',
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () => import(/* webpackChunkName: "Upcoming" */ './views/Upcoming.vue')
+        },
+        // {
+        //   path: 'Completed',
+        //   name: 'Completed',
+        //   // route level code-splitting
+        //   // this generates a separate chunk (about.[hash].js) for this route
+        //   // which is lazy-loaded when the route is visited.
+        //   component: () => import(/* webpackChunkName: "Upcoming" */ './views/Upcoming.vue')
+        // },
+        // {
+        //   path: 'Canceld',
+        //   name: 'Canceld',
+        //   // route level code-splitting
+        //   // this generates a separate chunk (about.[hash].js) for this route
+        //   // which is lazy-loaded when the route is visited.
+        //   component: () => import(/* webpackChunkName: "Upcoming" */ './views/Upcoming.vue')
+        // }
+      ]
+
+
     },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+
+
   ]
 })

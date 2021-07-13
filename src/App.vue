@@ -1,16 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <amplify-authenticator>
+      <div>
+        My App
+        <amplify-sign-out></amplify-sign-out>
+      </div>
+    </amplify-authenticator>
+    <router-view></router-view>
   </div>
 </template>
+<script>
+import { components } from "aws-amplify-vue";
+
+export default {
+  name: "app",
+  components: {
+    ...components
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
