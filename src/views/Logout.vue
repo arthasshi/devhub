@@ -11,15 +11,11 @@
 </template>
 
 <script>
-import { onAuthUIStateChange } from "@aws-amplify/ui-components";
-
 export default {
-  name: "AuthStateApp",
+  name: "logout",
   created() {
-    this.unsubscribeAuth = onAuthUIStateChange((authState, authData) => {
-      this.authState = authState;
-      this.user = authData;
-    });
+    this.user = JSON.parse(localStorage.user ? localStorage.user : "");
+    this.authState = localStorage.authState;
   },
   data() {
     return {

@@ -1,21 +1,39 @@
 <template>
   <div id="app">
-    <amplify-authenticator>
-      <div>
-        My App
-        <amplify-sign-out></amplify-sign-out>
-      </div>
+    <amplify-authenticator v-if="authState !== 'signedin'">
+      <amplify-sign-in
+        header-text="Devhub Sign"
+        slot="sign-in"
+        @handle-submit="handleSubmit"
+      ></amplify-sign-in>
     </amplify-authenticator>
-    <router-view></router-view>
+    <router-view v-if="authState === 'signedin' && user"></router-view>
   </div>
 </template>
 <script>
-import { components } from "aws-amplify-vue";
+import { onAuthUIStateChange } from "@aws-amplify/ui-components";
 
 export default {
   name: "app",
-  components: {
-    ...components
+  data() {
+    return {
+      user: undefined,
+      authState: undefined
+    };
+  },
+  created() {
+    this.unsubscribeAuth = onAuthUIStateChange((authState, authData) => {
+      this.authState = authState;
+      localStorage.authState = authState;
+      this.user = authData;
+      localStorage.user = JSON.stringify(authData);
+    });
+  },
+  mounted() {},
+  methods: {
+    handleSubmit() {
+      console.log(1111);
+    }
   }
 };
 </script>

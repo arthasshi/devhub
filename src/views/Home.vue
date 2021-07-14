@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <!-- 这个导航栏也可以独立出来变成导航组件 -->
     <div class="nav">
       <div
         class="item"
@@ -37,6 +38,7 @@ export default {
   data() {
     return {
       currentName: "",
+      /* 这个导航列表也可以使用router */
       navMenus: [
         {
           name: "My Profile",
@@ -54,14 +56,6 @@ export default {
               name: "Upcoming",
               path: "/Bk/Upcoming"
             }
-            // {
-            //   name: "Completed",
-            //   path: "Completed"
-            // },
-            // {
-            //   name: "Canceled",
-            //   path: "Canceled"
-            // }
           ]
         },
         {
@@ -82,6 +76,7 @@ export default {
   mounted() {},
   methods: {
     go2Page(i) {
+      /* 判断一下，防止重复跳转报错 */
       if (this.currentName == i.name) {
         return;
       }
